@@ -8,10 +8,10 @@ module.exports = {
     },
 
     async store(req, res) {
-        const { booksName, bookAuthor, bookSales } = req.body;
+        const { bookName, bookAuthor, bookSales } = req.body;
 
         const book = await Books.create({
-            booksName,
+            bookName,
             bookAuthor,
             bookSales
         });
@@ -26,15 +26,15 @@ module.exports = {
     async update(req, res) {
         const { bookId } = req.params;
 
-        const { booksName, bookAuthor, bookSales } = req.body;
+        const { bookName, bookAuthor, bookSales } = req.body;
 
         await Books.update(
             {
-                booksName,
+                bookName,
                 bookAuthor,
                 bookSales
             },
-            { where: { id: bookId } }
+            { where: { bookId } }
         );
 
         const books = await Books.findByPk(bookId);
@@ -54,7 +54,7 @@ module.exports = {
         const { bookId } = req.params;
     
         await Books.destroy({
-          where: { id: bookId },
+          where: { bookId },
         });
     
         res.json();

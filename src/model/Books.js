@@ -5,15 +5,20 @@ class Books extends Model {
         super.init({
             bookId: {
                 type: DataTypes.INTEGER,
-                primaryKey: true,
-                autOIncrement: true
+                autoIncrement: true,
+                allowNull: false,
+                primaryKey: true
             },
             bookName: DataTypes.STRING,
             bookAuthor: DataTypes.STRING,
-            bookSales: DataTypes.INTEGER
+            bookSales: DataTypes.INTEGER,
         }, {
             sequelize: connection,
-            tableName: 'books'
+            tableName: 'books',
+            timestamps: false,
+            freezeTableName: true
         })
     }
-}
+};
+
+module.exports = Books;
